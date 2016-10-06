@@ -44,7 +44,7 @@ PY
 }
 
 # VCS
-J6_VCS_PROMPT_PREFIX1="%{$fg[white]%}//%{$reset_color%} "
+J6_VCS_PROMPT_PREFIX1="%{$fg[white]%}|%{$reset_color%} "
 J6_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
 J6_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 J6_VCS_PROMPT_DIRTY=" %{$fg[red]%}⚫ "
@@ -78,25 +78,28 @@ local venv_info='$(venv_prompt_info)'
 venv_prompt_info() {
 	if [ ! "${VIRTUAL_ENV}" = "" ]; then
 		venv_name=$( basename ${VIRTUAL_ENV} )
-		echo -n "%{$reset_color%}// py:%{$fg[cyan]%}${venv_name}%{$reset_color%} "
+		echo -n "%{$reset_color%}| py:%{$fg[cyan]%}${venv_name}%{$reset_color%} "
 	fi
 }
 
 local exit_code="%(?,,%{$fg[red]%}[exit code %?]%{$reset_color%})"
 
-prefix="%{$bg[yellow]%} %{$reset_color%} "
+# Prefix
+prefix1="%{$fg[cyan]%}⎧%{$reset_color%} "
+prefix2="%{$fg[cyan]%}⎪%{$reset_color%} "
+prefix3="%{$fg[cyan]%}⎩%{$reset_color%} "
 
 # Prompt on 3 lines
 PROMPT="
-$prefix\
+$prefix1\
 %{$fg[magenta]%}${now_info}%{$reset_color%}  $exit_code
-$prefix\
-%(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
+$prefix2\
+%(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[green]%}%n) \
 %{$fg[white]%}@ \
 %{$fg[green]%}%m \
 ${hg_info}\
 ${venv_info}\
 ${git_info}
-$prefix\
+$prefix3\
 %{$fg[yellow]%}%~%{$reset_color%} \
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
