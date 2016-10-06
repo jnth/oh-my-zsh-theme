@@ -10,7 +10,7 @@
 # May 2016 Jonathan Virga
 
 # Time of a long process
-TIMEFMT="${fg[magenta]}time of \`%J\` / user: %U / system: %S / cpu: %P%% / total: %*E${reset_color}"
+TIMEFMT="${fg[magenta]}time of \`%J\` / user: %U / system: %S / cpu: %P / total: %*E${reset_color}"
 
 # Current date and time (with binary clock)
 now_info='$(now)'
