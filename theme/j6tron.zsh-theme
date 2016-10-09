@@ -85,9 +85,9 @@ venv_prompt_info() {
 local exit_code="%(?,,%{$fg[red]%}[exit code %?]%{$reset_color%})"
 
 # Prefix (FG[208]: orange)
-prefix1="%{$FG[208]%}⎧%{$reset_color%} "
-prefix2="%{$FG[208]%}⎪%{$reset_color%} "
-prefix3="%{$FG[208]%}⎩%{$reset_color%} "
+prefix1="%{$FG[208]%}|%{$reset_color%} "
+prefix2="%{$FG[208]%}|%{$reset_color%} "
+prefix3="%{$FG[208]%}|%{$reset_color%} "
 
 # Prompt on 3 lines
 PROMPT="
