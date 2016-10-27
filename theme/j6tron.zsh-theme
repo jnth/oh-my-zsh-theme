@@ -10,38 +10,7 @@
 # May 2016 Jonathan Virga
 
 # Time of a long process
-TIMEFMT="${fg[magenta]}time of \`%J\` / user: %U / system: %S / cpu: %P / total: %*E${reset_color}"
-
-# Current date and time (with binary clock)
-now_info='$(now)'
-now() {
-
-python <<PY
-#!/usr/bin/env python3.5
-# coding: utf-8
-
-import sys
-import datetime
-
-
-def binary_clock(t):
-    """Binary clock.
-
-    :param t: time (datetime.datetime object)
-    :return: str
-    """
-    symbs = {'0': '-', '1': 'x'}
-    h = format(int(bin(t.hour)[2:]), '05').replace('0', symbs['0']).replace('1', symbs['1'])
-    m = format(int(bin(t.minute)[2:]), '06').replace('0', symbs['0']).replace('1', symbs['1'])
-    s = format(int(bin(t.second)[2:]), '06').replace('0', symbs['0']).replace('1', symbs['1'])
-    return '{h}|{m}|{s}'.format(**locals())
-
-
-now = datetime.datetime.now()
-sys.stdout.write(now.strftime('%d/%m/%Y (%j) %H:%M:%S') + ' {' + binary_clock(now) + '}')
-
-PY
-}
+TIMEFMT="${fg[magenta]}>> user: %U / system: %S / cpu: %P / total: %*E${reset_color}"
 
 # VCS
 J6_VCS_PROMPT_PREFIX1="%{$fg[white]%}|%{$reset_color%} "
@@ -82,24 +51,17 @@ venv_prompt_info() {
 	fi
 }
 
-local exit_code="%(?,,%{$fg[red]%}[exit code %?]%{$reset_color%})"
-
-# Prefix (FG[208]: orange)
-prefix1="%{$FG[208]%}|%{$reset_color%} "
-prefix2="%{$FG[208]%}|%{$reset_color%} "
-prefix3="%{$FG[208]%}|%{$reset_color%} "
+local exit_code="%(?,,%{$fg[red]%}
+-- return code %? %{$reset_color%})
+"
 
 # Prompt on 3 lines
-PROMPT="
-$prefix1\
-%{$fg[magenta]%}${now_info}%{$reset_color%}  $exit_code
-$prefix2\
+PROMPT="$exit_code\
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
 %{$fg[green]%}%m \
 ${hg_info}\
 ${venv_info}\
 ${git_info}
-$prefix3\
 %{$fg[yellow]%}%~%{$reset_color%} \
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
