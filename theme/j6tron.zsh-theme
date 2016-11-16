@@ -16,8 +16,8 @@ TIMEFMT="${fg[magenta]}>> user: %U / system: %S / cpu: %P / total: %*E${reset_co
 J6_VCS_PROMPT_PREFIX1="%{$fg[white]%}|%{$reset_color%} "
 J6_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
 J6_VCS_PROMPT_SUFFIX="%{$reset_color%}"
-J6_VCS_PROMPT_DIRTY=" %{$fg[red]%}⚫ "
-J6_VCS_PROMPT_CLEAN=" %{$fg[green]%}⚫ "
+J6_VCS_PROMPT_DIRTY=" %{$fg[red]%}[x] "
+J6_VCS_PROMPT_CLEAN=""
 
 # Git info
 local git_info='$(git_prompt_info)'
