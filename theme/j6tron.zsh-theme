@@ -1,6 +1,6 @@
 # `j6tron` ZSH Theme
 #
-# Three colorful prompt lines
+# Two colorful prompt lines
 # It is recommended to use with a dark background.
 # Colors: black, red, green, yellow, blue, magenta, cyan, and white.
 #
