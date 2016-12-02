@@ -51,16 +51,16 @@ venv_prompt_info() {
 	fi
 }
 
-local exit_code="%(?..%{$fg[red]%}( ! %? %) %{$reset_color%})"
+local exit_code="%(?..%{$fg[magenta]%}(! %?%) %{$reset_color%})"
 
 # Prompt on 2 lines
 PROMPT="
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
 %{$fg[green]%}%m \
-${exit_code}\
 ${hg_info}\
 ${venv_info}\
 ${git_info}
 %{$fg[yellow]%}%~%{$reset_color%} \
+${exit_code}\
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
