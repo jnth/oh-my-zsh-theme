@@ -16,7 +16,7 @@ TIMEFMT="${fg[magenta]}>> user: %U / system: %S / cpu: %P / total: %*E${reset_co
 J6_VCS_PROMPT_PREFIX1="%{$fg[white]%}|%{$reset_color%} "
 J6_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
 J6_VCS_PROMPT_SUFFIX="%{$reset_color%}"
-J6_VCS_PROMPT_DIRTY=" %{$fg[red]%}[x] "
+J6_VCS_PROMPT_DIRTY="%{$fg[red]%}**"
 J6_VCS_PROMPT_CLEAN=""
 
 # Git info
@@ -51,15 +51,14 @@ venv_prompt_info() {
 	fi
 }
 
-local exit_code="%(?,,%{$fg[red]%}
--- return code %? %{$reset_color%})
-"
+local exit_code="%(?..%{$fg[red]%}( ! %? %) %{$reset_color%})"
 
-# Prompt on 3 lines
-PROMPT="$exit_code\
+# Prompt on 2 lines
+PROMPT="
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
 %{$fg[green]%}%m \
+${exit_code}\
 ${hg_info}\
 ${venv_info}\
 ${git_info}
